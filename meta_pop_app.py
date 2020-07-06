@@ -11,7 +11,7 @@ app = Flask(__name__)
 @app.route('/', methods=['POST'])
 # @retry(tries=5, delay=2)
 def inbound_parse():
-    print(json.dumps, request.data, sort_keys=True, indent=4)
+    print(json.dumps(request.data, sort_keys=True, indent=4))
     return "OK"
 
 
