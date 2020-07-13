@@ -22,6 +22,7 @@ def inbound_parse():
     #update resource via update api
     # asset = cloudinary.api.resource(payload['public_id'])
     result = cloudinary.api.update(payload['public_id'], metadata='cat_name=garfield')
+    print(result)
     return "OK"
 
 
