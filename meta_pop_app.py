@@ -27,11 +27,12 @@ def inbound_parse():
     
     #update resource metadata fields
     meta_result = cloudinary.uploader.update_metadata(metadata_string, payload['public_id'])
-    logging.info(result)
-    
+    logging.info(meta_result)
+
     if 'Yes' == cleanup_publicid:
         logging.info("Will cleanup the public id and set it to: ", filtered_assets_name)
         rename_results = cloudinary.uploader.rename(payload['public_id'], filtered_assets_name)
+        logging.info(rename_results)
     
     
     return "OK"
