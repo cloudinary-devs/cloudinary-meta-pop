@@ -4,6 +4,7 @@ import json
 from retry import retry
 
 import cloudinary
+import cloudinary.api
 import cloudinary.uploader
 
 app = Flask(__name__)
