@@ -14,14 +14,14 @@ app = Flask(__name__)
 def inbound_parse():
     print(json.dumps(request.json))
     payload = request.json
-
+    metadata_string =payload['original_filename'].split('__')
     #add security layer to match password
 
     #take split logic from var
 
     #update resource via update api
     # asset = cloudinary.api.resource(payload['public_id'])
-    result = cloudinary.api.update(payload['public_id'], metadata='cat_name=garfield')
+    result = cloudinary.uploader.update_metadata(metadata_string, payload['public_id'])
     print(result)
     return "OK"
 
