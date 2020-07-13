@@ -15,7 +15,7 @@ app = Flask(__name__)
 # @retry(tries=5, delay=2)
 def inbound_parse():
     payload = request.json
-    print("Now processing \n" ,json.dumps(payload))
+    logging.info("Now processing \n" ,json.dumps(payload))
     #add security layer to match password
 
     #TODO - take split logic from var
