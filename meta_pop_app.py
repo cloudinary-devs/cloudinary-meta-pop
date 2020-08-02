@@ -50,7 +50,7 @@ def inbound_parse_tree():
     tree_logic_list = tree_logic.split('/')
 
     #use pathlib to extrack folder parent and split it to a list
-    folder_prefix_list = Path(payload['public_id']).parent.split('/')
+    folder_prefix_list = (Path(payload['public_id']).parent).split('/')
 
     #iterate over the TREE_LOGIC list to populate the meta string
     for idx in len(tree_logic_list):
