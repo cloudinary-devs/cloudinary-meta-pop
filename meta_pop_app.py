@@ -53,7 +53,7 @@ def inbound_parse_tree():
     folder_prefix_list = str(Path(payload['public_id']).parent).split('/')
 
     #iterate over the TREE_LOGIC list to populate the meta string
-    for idx in len(tree_logic_list):
+    for idx in range(len(tree_logic_list)):
         if tree_logic_list[idx] and folder_prefix_list[idx]:
             metadata_list.append(tree_logic_list[idx]+'='+folder_prefix_list[idx])
     metadata_string = '|'.join(metadata_list)
