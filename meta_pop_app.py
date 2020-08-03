@@ -10,6 +10,9 @@ import cloudinary.uploader
 import logging
 from pathlib import Path
 
+import csv
+import requests
+
 app = Flask(__name__)
 
 @app.route('/', methods=['POST'])
@@ -69,10 +72,17 @@ def inbound_parse_tree():
 def inbound_parse_manifest():
     payload = request.json
     print(json.dumps(payload))
-    if (payload['original_filename'].split('.')[1]).lower() == 'csv':
+    if (payload['public_id'].split('.')[1]).lower() == 'csv':
         #add logic
         #get the file
-        print(json.dumps(payload))
+        with requests.Session() as s:
+            download = s.get(payload['secure_url'])
+            decoded_content = download.content.decode('utf-8')
+            cr = csv.DictReader(decoded_content.splitlines(), delimiter=',')
+    
+            for row in cr:
+                print(row)
+        # print(json.dumps(payload))
         return "OK"
     else:
         return "OK"
