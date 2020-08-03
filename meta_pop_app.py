@@ -79,9 +79,10 @@ def inbound_parse_manifest():
             download = s.get(payload['secure_url'])
             decoded_content = download.content.decode('utf-8')
             cr = csv.DictReader(decoded_content.splitlines(), delimiter=',')
-    
-            for row in cr:
-                print(row)
+            for k, v in cr.items():
+                print(k, v)
+            # for row in cr:
+            #     print(row)
         # print(json.dumps(payload))
         return "OK"
     else:
