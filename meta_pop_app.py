@@ -43,14 +43,18 @@ def inbound_parse():
 # @retry(tries=5, delay=2)
 def inbound_parse_tree():
     payload = request.json
-    logging.info("Now processing: \n" ,json.dumps(payload))
-    
+
     #reset metadata_string
     metadata_list = []
     metadata_string = ''
 
     #logic form TREE_LOGIC var is: YEAR/PRODUCT_LINE/COLOR split into a list
     tree_logic_list = tree_logic.split('/')
+    if len(tree_logic_list)<1:
+        return "OK"
+
+    payload['action'] = 'incoming hook for folder tree parsing'
+    print(request.json)
 
     #use pathlib to extrack folder parent and split it to a list
     folder_prefix_list = str(Path(payload['public_id']).parent).split('/')
@@ -63,6 +67,10 @@ def inbound_parse_tree():
     #update the meta on the asset
     
     meta_result = cloudinary.uploader.update_metadata(metadata_string, payload['public_id'])
+    meta_result['action'] = 'metadata update by folder structure'
+    meta_result['metadata_string'] = metadata_string
+    meta_result['metadata_list'] = metadata_list
+    meta_result['search_results'] = search_results
     print(meta_result)
     
     return "OK"
@@ -71,13 +79,12 @@ def inbound_parse_tree():
 # @retry(tries=5, delay=2)
 def inbound_parse_manifest():
     payload = request.json
-    payload['action'] = 'incoming hook'
-    print(request.json)
     #reset metadata_string
     metadata_list = []
     metadata_string = ''
     if (payload['public_id'].split('.')[1]).lower() == 'csv':
-        #add logic
+        payload['action'] = 'incoming hook for csv parsing'
+        print(request.json)
         #get the file
         with requests.Session() as s:
             download = s.get(payload['secure_url'])
@@ -93,7 +100,7 @@ def inbound_parse_manifest():
                 search_results = cloudinary.Search().expression('filename='+Path(str(row['FILENAME'])).stem+'*').execute()
                 # print(search_results)
                 meta_result = cloudinary.uploader.update_metadata(metadata_string, search_results['resources'][0]['public_id'])
-                meta_result['action'] = 'metadata update'
+                meta_result['action'] = 'metadata update by csv'
                 meta_result['metadata_string'] = metadata_string
                 meta_result['metadata_list'] = metadata_list
                 meta_result['search_results'] = search_results
