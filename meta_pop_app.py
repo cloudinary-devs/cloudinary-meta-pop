@@ -71,7 +71,9 @@ def inbound_parse_tree():
 # @retry(tries=5, delay=2)
 def inbound_parse_manifest():
     payload = request.json
-    # print(json.dumps(payload))
+    #reset metadata_string
+    metadata_list = []
+    metadata_string = ''
     if (payload['public_id'].split('.')[1]).lower() == 'csv':
         #add logic
         #get the file
@@ -82,9 +84,13 @@ def inbound_parse_manifest():
             
             for row in cr:
                 for k, v in row.items():
-                    print(k, v)
-            #     print(row)
-        # print(json.dumps(payload))
+                    metadata_list.append(k+'='+v)
+                metadata_string = '|'.join(metadata_list)
+                #update the meta on the asset
+                search_results = cloudinary.Search().expression('filename='+Path(str(row['FILENAME'])).stem+'*').execute()
+                meta_result = cloudinary.uploader.update_metadata(metadata_string, search_results['resources'][0]['public_id'])
+                logging.info(meta_result)
+        
         return "OK"
     else:
         return "OK"
