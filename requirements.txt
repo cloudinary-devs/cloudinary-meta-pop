@@ -7,3 +7,4 @@ cloudinary
 retry
 pathlib
 requests
+csv
