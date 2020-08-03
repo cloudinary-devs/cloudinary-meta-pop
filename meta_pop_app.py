@@ -64,6 +64,19 @@ def inbound_parse_tree():
     
     return "OK"
 
+@app.route('/manifest', methods=['POST'])
+# @retry(tries=5, delay=2)
+def inbound_parse_manifest():
+    payload = request.json
+    if payload['original_filename'].split(filter_divider)[1].lower() == 'csv':
+        #add logic
+        #get the file
+        print(json.dumps(payload))
+        return "OK"
+    else:
+        return "OK"
+
+
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 80))
     
