@@ -63,7 +63,7 @@ def inbound_parse_tree():
     #update the meta on the asset
     
     meta_result = cloudinary.uploader.update_metadata(metadata_string, payload['public_id'])
-    logging.info(meta_result)
+    print(meta_result)
     
     return "OK"
 
@@ -71,6 +71,7 @@ def inbound_parse_tree():
 # @retry(tries=5, delay=2)
 def inbound_parse_manifest():
     payload = request.json
+    print(request.json)
     #reset metadata_string
     metadata_list = []
     metadata_string = ''
@@ -89,8 +90,9 @@ def inbound_parse_manifest():
                 metadata_string = '|'.join(metadata_list)
                 #update the meta on the asset
                 search_results = cloudinary.Search().expression('filename='+Path(str(row['FILENAME'])).stem+'*').execute()
+                print(search_results)
                 meta_result = cloudinary.uploader.update_metadata(metadata_string, search_results['resources'][0]['public_id'])
-                logging.info(meta_result)
+                print(meta_result)
         
         return "OK"
     else:
