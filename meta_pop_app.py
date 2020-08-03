@@ -82,7 +82,7 @@ def inbound_parse_manifest():
             
             for row in cr:
                 for k, v in row.items():
-                print(k, v)
+                    print(k, v)
             #     print(row)
         # print(json.dumps(payload))
         return "OK"
