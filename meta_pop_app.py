@@ -71,7 +71,7 @@ def inbound_parse_tree():
 # @retry(tries=5, delay=2)
 def inbound_parse_manifest():
     payload = request.json
-    print(json.dumps(payload))
+    # print(json.dumps(payload))
     if (payload['public_id'].split('.')[1]).lower() == 'csv':
         #add logic
         #get the file
@@ -79,9 +79,10 @@ def inbound_parse_manifest():
             download = s.get(payload['secure_url'])
             decoded_content = download.content.decode('utf-8')
             cr = csv.DictReader(decoded_content.splitlines(), delimiter=',')
-            for k, v in cr.items():
+            
+            for row in cr:
+                for k, v in row.items():
                 print(k, v)
-            # for row in cr:
             #     print(row)
         # print(json.dumps(payload))
         return "OK"
