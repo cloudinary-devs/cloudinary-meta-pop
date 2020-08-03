@@ -71,7 +71,6 @@ def inbound_parse_tree():
     meta_result['metadata_string'] = metadata_string
     meta_result['metadata_list'] = metadata_list
     print(meta_result)
-    
     return "OK"
 
 @app.route('/manifest', methods=['POST'])
