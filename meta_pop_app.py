@@ -70,7 +70,6 @@ def inbound_parse_tree():
     meta_result['action'] = 'metadata update by folder structure'
     meta_result['metadata_string'] = metadata_string
     meta_result['metadata_list'] = metadata_list
-    meta_result['search_results'] = search_results
     print(meta_result)
     
     return "OK"
