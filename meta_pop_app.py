@@ -68,7 +68,8 @@ def inbound_parse_tree():
 # @retry(tries=5, delay=2)
 def inbound_parse_manifest():
     payload = request.json
-    if payload['original_filename'].split('.')[1].lower() == 'csv':
+    print(json.dumps(payload))
+    if (payload['original_filename'].split('.')[1]).lower() == 'csv':
         #add logic
         #get the file
         print(json.dumps(payload))
