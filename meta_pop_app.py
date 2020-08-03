@@ -84,7 +84,8 @@ def inbound_parse_manifest():
             
             for row in cr:
                 for k, v in row.items():
-                    metadata_list.append(k+'='+v)
+                    if k != 'FILENAME':
+                        metadata_list.append(k+'='+v)
                 metadata_string = '|'.join(metadata_list)
                 #update the meta on the asset
                 search_results = cloudinary.Search().expression('filename='+Path(str(row['FILENAME'])).stem+'*').execute()
