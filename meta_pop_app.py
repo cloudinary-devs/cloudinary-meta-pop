@@ -15,29 +15,24 @@ import requests
 
 app = Flask(__name__)
 
-@app.route('/', methods=['POST'])
-# @retry(tries=5, delay=2)
-def inbound_parse():
-    payload = request.json
-    logging.info("Now processing: \n" ,json.dumps(payload))
-    #add security layer to match password
-    #TODO - take split logic from var
-    #split original filename to metadata + just the filename
-    metadata_string = payload['original_filename'].split(filter_divider)[0]
-
-    #split the public_id to derive the original public_if
-    filtered_assets_name = payload['public_id'].split(filter_divider)[1]
-    
-    #update resource metadata fields
-    meta_result = cloudinary.uploader.update_metadata(metadata_string, payload['public_id'])
-    print(meta_result)
-
-    if 'Yes' == cleanup_publicid:
-        logging.info("Will cleanup the public id and set it to: ", filtered_assets_name)
-        rename_results = cloudinary.uploader.rename(payload['public_id'], filtered_assets_name)
-        print(rename_results)
-    
-    return "OK"
+def generate_meta_string(field_name,field_required_value,metadata_tree=cloudinary.api.list_metadata_fields()):
+    #first find out field in list
+    for field in metadata_tree['metadata_fields']:
+        if field_name.upper().strip() == field['external_id'].upper().strip():
+            #when the field is found, check field type and act by it
+            #string case
+            if field['type'] == 'string':
+                return field_name+'='+field_required_value
+            #enum (single selection) case
+            if field['type'] == 'enum':
+                for v in field['datasource']['values']:
+                    # match with option name
+                    if v['value'].upper() == field_required_value.upper():
+                        return field_name+'='+v['external_id']
+            #integer case
+            if field['type']  == 'integer':
+                if isinstance(field_required_value, int):
+                    return field_name+'='+field_required_value
 
 @app.route('/foldertree', methods=['POST'])
 # @retry(tries=5, delay=2)
@@ -80,6 +75,7 @@ def inbound_parse_manifest():
     #reset metadata_string
     metadata_list = []
     metadata_string = ''
+    metadata_tree=cloudinary.api.list_metadata_fields()
     if (payload['public_id'].split('.')[1]).lower() == 'csv':
         payload['action'] = 'incoming hook for csv parsing'
         print(request.json)
@@ -88,15 +84,26 @@ def inbound_parse_manifest():
             download = s.get(payload['secure_url'])
             decoded_content = download.content.decode('utf-8')
             cr = csv.DictReader(decoded_content.splitlines(), delimiter=',')
-            
+
+            #parse the file and make the cahnges by each line of it
+            #header format should be as following
+            #FILENAME,FIELD_EXT_ID1,FIELD_EXT_ID2
+            #file.jpg,field_value1,field_value2
+
             for row in cr:
                 for k, v in row.items():
                     if k != 'FILENAME':
-                        metadata_list.append(k+'='+v)
+                        metadata_item = generate_meta_string(k,v,metadata_tree)
+                        # metadata_list.append(k+'='+v)
+                        metadata_list.append(metadata_item)
+
                 metadata_string = '|'.join(metadata_list)
-                #update the meta on the asset
+
+                #search for the assets to get it's public_id
                 search_results = cloudinary.Search().expression('filename='+Path(str(row['FILENAME'])).stem+'*').execute()
                 # print(search_results)
+
+                #call upon a function to update the metadata
                 meta_result = cloudinary.uploader.update_metadata(metadata_string, search_results['resources'][0]['public_id'])
                 meta_result['action'] = 'metadata update by csv'
                 meta_result['metadata_string'] = metadata_string
@@ -110,7 +117,7 @@ def inbound_parse_manifest():
 
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 80))
+    port = int(os.environ.get('PORT', 8888))
     
     cld_url = str(os.environ.get('CLOUDINARY_URL', '')) 
     filter_divider = str(os.environ.get('FILTER_DIVIDER', '__'))
