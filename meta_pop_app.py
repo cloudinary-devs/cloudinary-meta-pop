@@ -95,13 +95,12 @@ def inbound_parse_manifest():
                     if k != 'FILENAME':
                         metadata_item = generate_meta_string(k,v,metadata_tree)
                         # metadata_list.append(k+'='+v)
-                        metadata_list.append(metadata_item)
-
+                        if metadata_item:
+                            metadata_list.append(metadata_item)
                 metadata_string = '|'.join(metadata_list)
 
                 #search for the assets to get it's public_id
                 search_results = cloudinary.Search().expression('filename='+Path(str(row['FILENAME'])).stem+'*').execute()
-                # print(search_results)
 
                 #call upon a function to update the metadata
                 meta_result = cloudinary.uploader.update_metadata(metadata_string, search_results['resources'][0]['public_id'])
@@ -110,7 +109,6 @@ def inbound_parse_manifest():
                 meta_result['metadata_list'] = metadata_list
                 meta_result['search_results'] = search_results
                 print(meta_result)
-        
         return "OK"
     else:
         return "OK"
