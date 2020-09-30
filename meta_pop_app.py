@@ -95,11 +95,8 @@ def inbound_parse_manifest():
                 for k, v in row.items():
                     if k != 'FILENAME':
                         metadata_item =''
-                        print(k,v)
                         metadata_item = generate_meta_string(k,v,metadata_tree)
-                        # metadata_list.append(k+'='+v)
                         if metadata_item:
-                            print('metadata generated:'+ metadata_item)
                             metadata_list.append(metadata_item)
                 metadata_string = '|'.join(metadata_list)
 
@@ -123,7 +120,6 @@ if __name__ == '__main__':
     
     cld_url = str(os.environ.get('CLOUDINARY_URL', '')) 
     filter_divider = str(os.environ.get('FILTER_DIVIDER', '__'))
-    cleanup_publicid = str(os.environ.get('CLEANUP_PUBLICID', 'Yes'))
     tree_logic = str(os.environ.get('TREE_LOGIC', ''))
     logging.info("app will run on port:", port)
     app.run(host='0.0.0.0', port=port)

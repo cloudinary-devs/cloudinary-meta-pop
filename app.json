@@ -24,15 +24,6 @@
 		"description": "This is the string which devides your asset name from the key/value string you added to it. default is __ ",
 		"value" : "__",
 		"required": "true"
-		},
-	"CLEANUP_PUBLICID": {
-		"description": "The Meta Pop app can cleanup the public_id for you, Effectivly removing the key=value prefix from the filename",
-		"value" : "Yes",
-		"required": "true"
 		}
 	},
-	// "scripts": {
-	// 		"postdeploy": "python provision_scripts/configure_upload_preset.py",
-	// 		"pr-predestroy": "python provision_scripts/remove_upload_preset.py"
-	// 	}
 }
