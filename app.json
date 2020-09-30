@@ -29,7 +29,7 @@
 	"addons": [
     "coralogix",
     {
-      "plan": "free-30mbday"
+      "plan": "coralogix:free-30mbday"
     }
   ]
 }
