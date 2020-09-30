@@ -8,7 +8,7 @@ The update by file structure (Upon upload)
 ## How Can You Get the Tool?
 
 ### Installation
-The fastest way is to click the button below:
+The fastest way is to click Here -->:
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/cloudinary-devs/cloudinary-meta-pop)
 
 Fill in the variables:
