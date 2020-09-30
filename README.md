@@ -9,7 +9,7 @@ The update by file structure (Upon upload)
 
 ### Installation
 The fastest way is to click the button below:
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/talknopf/cloudinary-meta-pop)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/cloudinary-devs/cloudinary-meta-pop)
 
 Fill in the variables:
 
