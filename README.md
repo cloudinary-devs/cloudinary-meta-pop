@@ -10,19 +10,19 @@ The fastest way is to click Here -->:
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/cloudinary-devs/cloudinary-meta-pop)
 
 ### Fill in the variables:
-	CLOUDINARY_URL - You can get this value from your cloudinary console dashboard. It's the way we authenticate the app with Cloudinary
-	
-	FILTER_DIVIDER - Hre you have 2 options, You can set it up now or later.
-	If you have no plans of using the "Metadata by folder structure" there is no need to set it up"
+CLOUDINARY_URL - You can get this value from your cloudinary console dashboard. It's the way we authenticate the app with Cloudinary
 
-## Configure it on your cloudianry account:
+FILTER_DIVIDER - Hre you have 2 options, You can set it up now or later.
+If you have no plans of using the "Metadata by folder structure" there is no need to set it up"
+
+### Configure it on your cloudianry account:
 To Configure the tool you will need to create an upload preset.
 One for each of the feature in this app where each will be pointed at the relevant endpoint.
 
 
-### Develop and Evolve the code!
-Depending on your goal, do either of the following:
-
+## Develop and Evolve the code!
+Run the following command to get a local copy running.
+Please tell us about any bugs you find or open a PR for fixing them and adding features.
 
 ```bash
 git clone https://github.com/cloudinary-devs/cloudinary-meta-pop

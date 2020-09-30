@@ -78,7 +78,7 @@ def inbound_parse_manifest():
     metadata_tree=cloudinary.api.list_metadata_fields()
     if (payload['public_id'].split('.')[1]).lower() == 'csv':
         payload['action'] = 'incoming hook for csv parsing'
-        print(request.json)
+        print(json.dumps(request.json))
         #get the file
         with requests.Session() as s:
             download = s.get(payload['secure_url'])
@@ -109,7 +109,7 @@ def inbound_parse_manifest():
                 meta_result['metadata_string'] = metadata_string
                 meta_result['metadata_list'] = metadata_list
                 meta_result['search_results'] = search_results
-                print(meta_result)
+                print(json.dumps(meta_result))
         return "OK"
     else:
         return "OK"
