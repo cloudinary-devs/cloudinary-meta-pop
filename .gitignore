@@ -130,3 +130,6 @@ dmypy.json
 
 #Mac OS file indexer
 .DS_Store
+
+#ignore any sample csv file
+*.csv

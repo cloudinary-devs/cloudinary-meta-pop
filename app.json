@@ -26,4 +26,10 @@
 		"required": "true"
 		}
 	},
+	"addons": [
+    "coralogix",
+    {
+      "plan": "free-30mbday"
+    }
+  ]
 }
