@@ -13,7 +13,7 @@ The fastest way is to click Here -->:
 
 Fill in the variables:
 
-### Configure it on you cloudianry account:
+### Configure it on your cloudianry account:
 To Configure the tool you will need the following
 
 ### Wiring the Tool

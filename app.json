@@ -10,19 +10,14 @@
 	"repository": "https://github.com/talknopf/cloudinary-meta-pop",
 	"logo": "https://res.cloudinary.com/cloudinary/image/upload/b_rgb:ffffff,c_scale,w_200/v1/logo/for_white_bg/cloudinary_vertical_logo_for_white_bg.png",	
 	"env": {
-	"UP_PRESET": {
-		"description": "The name of the upload preset you created within you cloudianry account to work with ",
-		"value" : "meta_pop_upload",
-		"required": "true"
-		},
 	"CLOUDINARY_URL": {
 		"description": "This served as your authentication string for your cloudinary account, you can copy the calue from your cloudinary console",
 		"value" : "",
 		"required": "true"
 		},
-	"FILTER_DIVIDER": {
-		"description": "This is the string which devides your asset name from the key/value string you added to it. default is __ ",
-		"value" : "__",
+	"TREE_LOGIC": {
+		"description": "This field is letting you add know the mapping between each external_id of the structure metadata field to the relative path prefix in cloudinary \n while cloud be changed later, you dont need to set it up if you are not plannig to use it",
+		"value" : "FIELD_NAME_1/FIELD_NAME_2/FIELD_NAME_3",
 		"required": "true"
 		}
 	},
