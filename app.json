@@ -27,9 +27,6 @@
 		}
 	},
 	"addons": [
-    "coralogix",
-    {
-      "plan": "coralogix:free-30mbday"
-    }
+    "coralogix"
   ]
 }
