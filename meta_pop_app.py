@@ -96,6 +96,7 @@ def inbound_parse_manifest():
                         metadata_item = generate_meta_string(k,v,metadata_tree)
                         # metadata_list.append(k+'='+v)
                         if metadata_item:
+                            print('metadata generated:'+ metadata_item)
                             metadata_list.append(metadata_item)
                 metadata_string = '|'.join(metadata_list)
 
