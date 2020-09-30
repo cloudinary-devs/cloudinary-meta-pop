@@ -5,19 +5,19 @@ This tool will allow you to maintain 2 main approches
 The update by CSV
 The update by file structure (Upon upload)
 
-## How Can You Get the Tool?
-
-### Installation
+## Installation
 The fastest way is to click Here -->:
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/cloudinary-devs/cloudinary-meta-pop)
 
-Fill in the variables:
+### Fill in the variables:
+	CLOUDINARY_URL - You can get this value from your cloudinary console dashboard. It's the way we authenticate the app with Cloudinary
+	
+	FILTER_DIVIDER - Hre you have 2 options, You can set it up now or later.
+	If you have no plans of using the "Metadata by folder structure" there is no need to set it up"
 
-### Configure it on your cloudianry account:
-To Configure the tool you will need the following
-
-### Wiring the Tool
-
+## Configure it on your cloudianry account:
+To Configure the tool you will need to create an upload preset.
+One for each of the feature in this app where each will be pointed at the relevant endpoint.
 
 
 ### Develop and Evolve the code!
