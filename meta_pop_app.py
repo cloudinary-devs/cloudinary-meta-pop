@@ -91,8 +91,11 @@ def inbound_parse_manifest():
             #file.jpg,field_value1,field_value2
 
             for row in cr:
+                metadata_list = []
                 for k, v in row.items():
                     if k != 'FILENAME':
+                        metadata_item =''
+                        print(k,v)
                         metadata_item = generate_meta_string(k,v,metadata_tree)
                         # metadata_list.append(k+'='+v)
                         if metadata_item:
