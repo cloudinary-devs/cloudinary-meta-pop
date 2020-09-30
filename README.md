@@ -1,26 +1,34 @@
 ## What Is This Tool?
-This tool
+This tool was created to fullfill the need for bulk metadata updates on a cloudinary DAM account.
+This tool will allow you to maintain 2 main approches
+
+The update by CSV
+The update by file structure (Upon upload)
+
 ## How Can You Get the Tool?
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/cloudinary-devs/cloudinary-email-uploader)
+### Installation
+The fastest way is to click the button below:
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/talknopf/cloudinary-meta-pop)
 
+Fill in the variables:
 
-### Setting Up the Prerequisites 
-Set up the following:
+### Configure it on you cloudianry account:
+To Configure the tool you will need the following
 
 ### Wiring the Tool
 
 
 
-### Deploying the Code
+### Develop and Evolve the code!
 Depending on your goal, do either of the following:
 
 
 ```bash
-git clone https://github.com/cloudinary-devs/
- cd cloudinary-email-uploader
+git clone https://github.com/cloudinary-devs/cloudinary-meta-pop
+ cd cloudinary-meta-pop
  pip install -r requirements.txt
- python cld-email-uploader.py
+ python meta_pop_app.py
 ```
 
 
