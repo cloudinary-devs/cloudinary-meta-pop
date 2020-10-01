@@ -27,7 +27,7 @@ The fastest way is to click Here -->:
 ### Fill in the variables:
 CLOUDINARY_URL - You can get this value from your cloudinary console dashboard. It's the way we authenticate the app with Cloudinary
 
-TREE_LOGIC - Hre you have 2 options, You can set it up now or later.
+TREE_LOGIC - Here you have 2 options, You can set it up now or later.
 If you have no plans of using the "Metadata by folder structure" there is no need to set it up"
 
 ### Configure it on your cloudianry account:
