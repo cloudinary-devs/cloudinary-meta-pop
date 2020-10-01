@@ -31,8 +31,14 @@ TREE_LOGIC - Hre you have 2 options, You can set it up now or later.
 If you have no plans of using the "Metadata by folder structure" there is no need to set it up"
 
 ### Configure it on your cloudianry account:
-To Configure the tool you will need to create an upload preset.
-One for each of the feature in this app where each will be pointed at the relevant endpoint.
+To Configure the tool you will need to create an upload preset with a notification url.
+you can learn how to do it here: https://cloudinary.com/documentation/upload_presets
+
+To use the update by csv method point the notification url to:
+	{your app url}/manifest
+
+To use the Update by folder method point the notification url to:
+	{your app url}/foldertree
 
 
 ## Develop and Evolve the code!
