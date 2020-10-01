@@ -119,7 +119,6 @@ if __name__ == '__main__':
     port = int(os.environ.get('PORT', 8888))
     
     cld_url = str(os.environ.get('CLOUDINARY_URL', '')) 
-    filter_divider = str(os.environ.get('FILTER_DIVIDER', '__'))
     tree_logic = str(os.environ.get('TREE_LOGIC', ''))
     logging.info("app will run on port:", port)
     app.run(host='0.0.0.0', port=port)

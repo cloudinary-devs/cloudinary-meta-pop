@@ -2,8 +2,23 @@
 This tool was created to fullfill the need for bulk metadata updates on a cloudinary DAM account.
 This tool will allow you to maintain 2 main approches
 
-The update by CSV
-The update by file structure (Upon upload)
+### The update by CSV
+Simply upload a csv file to the root of your account when the structure is rather simple.
+the first line of the csv file (the Headers) will contain the folloeing structure:
+	FILENAME,external id of first field, external id of second field, etc..
+	foo.jpg,value1,value2
+	bar.bmp.value1,value2
+
+the file will be processed line by line and for each line you will be able to see the actions taken in the attached Coralogix instance.
+
+### The update by file structure (Upon upload)
+This method will update the metadata field with regards to the assets "folder" location.
+So if you upload an assets to /Cloudinary root/Folder1/Folder2/Asset_name
+And your "tree logic" value is the following "Field1/Field2"
+
+The result will be as such: Field1=Folder1, Field2=Folder2
+
+The update of upload will happen only on upload, and not on rename action.
 
 ## Installation
 The fastest way is to click Here -->:
@@ -12,7 +27,7 @@ The fastest way is to click Here -->:
 ### Fill in the variables:
 CLOUDINARY_URL - You can get this value from your cloudinary console dashboard. It's the way we authenticate the app with Cloudinary
 
-FILTER_DIVIDER - Hre you have 2 options, You can set it up now or later.
+TREE_LOGIC - Hre you have 2 options, You can set it up now or later.
 If you have no plans of using the "Metadata by folder structure" there is no need to set it up"
 
 ### Configure it on your cloudianry account:
