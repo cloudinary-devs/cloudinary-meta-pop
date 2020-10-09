@@ -1,22 +1,23 @@
 ## What Is This Tool?
-This tool was created to fullfill the need for bulk metadata updates on a cloudinary DAM account.
-This tool will allow you to maintain 2 main approches
+This tool was created to fulfill the need for bulk metadata updates on a Cloudinary DAM account.
+This tool will allow you to maintain 2 main approaches.
 
 ### The update by CSV
-Simply upload a csv file to the root of your account when the structure is rather simple.
-the first line of the csv file (the Headers) will contain the folloeing structure:
+Simply upload a CSV file to the root of your account when the structure is rather simple.
+The first line of the CSV file (the Headers) will contain the following structure:
+```
 	FILENAME,external id of first field, external id of second field, etc..
 	foo.jpg,value1,value2
 	bar.bmp.value1,value2
-
-the file will be processed line by line and for each line you will be able to see the actions taken in the attached Coralogix instance.
+```
+The file will be processed line by line and for each line you will be able to see the actions taken in the attached Coralogix instance.
 
 ### The update by file structure (Upon upload)
-This method will update the metadata field with regards to the assets "folder" location.
-So if you upload an assets to /Cloudinary root/Folder1/Folder2/Asset_name
-And your "tree logic" value is the following "Field1/Field2"
+This method will update the metadata field with regard to the assets "folder" location.
+So if you upload an asset to `/Cloudinary root/Folder1/Folder2/Asset_name`
+And your "tree logic" value is `Field1/Field2`
 
-The result will be as such: Field1=Folder1, Field2=Folder2
+The result will be as such: `Field1=Folder1, Field2=Folder2`
 
 The update of upload will happen only on upload, and not on rename action.
 
@@ -25,19 +26,19 @@ The fastest way is to click Here -->:
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/cloudinary-devs/cloudinary-meta-pop)
 
 ### Fill in the variables:
-CLOUDINARY_URL - You can get this value from your cloudinary console dashboard. It's the way we authenticate the app with Cloudinary
+`CLOUDINARY_URL` - You can get this value from your Cloudinary console dashboard. It's the way we authenticate the app with Cloudinary
 
-TREE_LOGIC - Here you have 2 options, You can set it up now or later.
-If you have no plans of using the "Metadata by folder structure" there is no need to set it up"
+`TREE_LOGIC` - Here you have 2 options, you can set it up now or later.
+If you have no plans of using the "Metadata by folder structure" there is no need to set it up.
 
-### Configure it on your cloudianry account:
-To Configure the tool you will need to create an upload preset with a notification url.
-you can learn how to do it here: https://cloudinary.com/documentation/upload_presets
+### Configure it on your Cloudinary account:
+To configure the tool you will need to create an upload preset with a notification URL.
+You can learn how to do it here: https://cloudinary.com/documentation/upload_presets
 
-To use the update by csv method point the notification url to:
+To use the update by CSV method point the notification URL to:
 	{your app url}/manifest
 
-To use the Update by folder method point the notification url to:
+To use the Update by folder method point the notification URL to:
 	{your app url}/foldertree
 
 
@@ -47,9 +48,9 @@ Please tell us about any bugs you find or open a PR for fixing them and adding f
 
 ```bash
 git clone https://github.com/cloudinary-devs/cloudinary-meta-pop
- cd cloudinary-meta-pop
- pip install -r requirements.txt
- python meta_pop_app.py
+cd cloudinary-meta-pop
+pip install -r requirements.txt
+python meta_pop_app.py
 ```
 
 
